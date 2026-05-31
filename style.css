@@ -1,0 +1,423 @@
+/* Importation d'une police Pixel Art pour coller au thème Minecraft */
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    height: 100vh;
+    font-family: 'Press Start 2P', Arial, sans-serif; /* Police Pixel */
+    .background-video { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; z-index: 1; }
+    overflow: hidden;
+    position: relative;
+}
+
+/* Assombrissement de l'arrière-plan */
+.overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    
+    /* LIGNE POUR LE FLOU */
+    backdrop-filter: blur(8px); 
+
+    /* AJOUT DE L'EFFET VIGNETTE (Ombre dégradée sur les bords) */
+    background: radial-gradient(circle, rgba(0,0,0,0) 60%, rgba(0,0,0,0.3) 100%);
+}      
+
+/* Menu principal */
+.menu{
+    position: relative;
+    z-index: 2;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transition: opacity 0.5s ease; 
+}
+
+
+/* Logo */
+.logo{
+    width: 220px; /* Légèrement agrandi pour l'impact visuel */
+    margin-bottom: 10px;
+    image-rendering: pixelated;
+    filter: drop-shadow(0px 4px 8px rgba(0,0,0,0.5));
+    transition: transform 0.3s ease;
+    }
+.logo:hover {
+    transform: scale(1.08) rotate(2deg); /* Grossit légèrement et penche un peu style Pokémon */
+}
+
+/* Titre */
+h1{
+    color: #fdb813; /* Couleur dorée souvent utilisée dans Pokémon/Minecraft */
+    font-size: 32px; /* Réduit car la police pixel prend plus de place */
+    margin-bottom: 40px;
+    text-shadow: 4px 4px 0px #3f3f3f;
+    text-align: center;
+}
+
+/* Conteneur boutons */
+.buttons{
+    width: 550px;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+/* Style de bouton style "Minecraft" */
+.menu-btn,
+.small-btn{
+    font-family: 'Press Start 2P', Arial, sans-serif;
+    font-size: 16px;
+    color: #e0e0e0;
+    padding: 18px;
+    cursor: pointer;
+    text-shadow: 2px 2px 0px #2a2a2a;
+    
+    /* Bordures typiques Minecraft (effet 3D rétro) */
+    background: #5c5c5c;
+    border: 4px solid #000;
+    border-top-color: #8b8b8b;
+    border-left-color: #8b8b8b;
+    border-right-color: #373737;
+    border-bottom-color: #373737;
+}
+
+/* Effet Hover (Survol) */
+.menu-btn:hover,
+.small-btn:hover{
+    background: #7c7c7c;
+    color: #fffde0;
+    border-top-color: #b5b5b5;
+    border-left-color: #b5b5b5;
+    border-right-color: #4a4a4a;
+    border-bottom-color: #4a4a4a;
+}
+
+/* Effet Active (Clic) */
+.menu-btn:active,
+.small-btn:active{
+    border-top-color: #373737;
+    border-left-color: #373737;
+    border-right-color: #8b8b8b;
+    border-bottom-color: #8b8b8b;
+    padding-top: 20px; /* Simule l'enfoncement du bouton */
+    padding-bottom: 16px;
+}
+
+/* Petits boutons bas */
+.bottom-buttons{
+    display: flex;
+    gap: 14px;
+}
+
+.small-btn{
+    width: 100%;
+}
+
+/* Notification temporaire pour la copie de l'IP */
+.toast {
+    position: fixed;
+    bottom: 30px;
+    left: 40%;
+    transform: translateX(-50%); /* Centre la notification horizontalement */
+    background: #2c2c2c;
+    color: #55ff55; /* Vert fluo Minecraft */
+    padding: 12px 24px;
+    border: 4px solid #000;
+    box-shadow: inset 3px 3px 0px #8a8a8a, inset -3px -3px 0px #1a1a1a;
+    font-family: 'Press Start 2P', Arial, sans-serif;
+    font-size: 11px;
+    z-index: 100;
+    animation: fadeInOut 3s ease-in-out forwards;
+}
+
+@keyframes fadeInOut {
+    0% { opacity: 0; bottom: 10px; }
+    15% { opacity: 1; bottom: 30px; }
+    85% { opacity: 1; bottom: 30px; }
+    100% { opacity: 0; bottom: 50px; }
+}
+
+@keyframes fadeInOut {
+    0% { opacity: 0; transform: translateY(20px); }
+    15% { opacity: 1; transform: translateY(0); }
+    85% { opacity: 1; transform: translateY(0); }
+    100% { opacity: 0; transform: translateY(-20px); }
+}
+/* Écran d'adieu */
+.goodbye-screen {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    animation: scaleUp 0.4s ease-out;
+}
+
+.goodbye-screen h2 {
+    color: #ff5555; /* Un rouge/rose pixel sympa, ou mets du jaune (#fdb813) si tu préfères */
+    font-size: 24px;
+    margin-top: 20px;
+    margin-bottom: 15px;
+    text-shadow: 3px 3px 0px #3f3f3f;
+}
+
+.goodbye-screen p {
+    color: #aaa;
+    font-size: 14px;
+    text-shadow: 2px 2px 0px #1a1a1a;
+}
+
+.logo-fade {
+    width: 150px;
+    image-rendering: pixelated;
+    filter: drop-shadow(0px 4px 8px rgba(0,0,0,0.5));
+}
+
+/* Petite animation d'apparition zoomée */
+@keyframes scaleUp {
+    from {
+        transform: scale(0.9);
+        opacity: 0;
+    }
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+/* --- CONTENEUR DU GÉNÉRIQUE DE FIN --- */
+.credits-screen {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center; /* Centre parfaitement le contenu à la fin */
+    overflow: hidden;
+}
+
+/* --- LE TEXTE QUI DÉFILE --- */
+.credits-crawler {
+    text-align: center;
+    font-family: 'Press Start 2P', Arial, sans-serif;
+    color: #ffffff;
+    position: relative;
+    top: 0; /* On retire le top: 100% pour éviter les conflits */
+    
+    /* L'animation dure 4 secondes et se bloque à la fin (forwards) */
+    animation: movieCredits 8s ease-out forwards; 
+}
+
+.credits-crawler h2 {
+    color: #fdb813;
+    font-size: 24px;
+    margin-bottom: 30px;
+    text-shadow: 3px 3px 0px #000;
+}
+
+.credits-crawler h3 {
+    color: #ff5555;
+    font-size: 16px;
+    margin-top: 25px;
+    margin-bottom: 10px;
+}
+
+.credits-crawler p {
+    font-size: 14px;
+    color: #e0e0e0;
+    margin-bottom: 8px;
+}
+
+/* --- L'ANIMATION : DU BAS VERS LE MILIEU --- */
+@keyframes movieCredits {
+    0% {
+        /* Démarre tout en bas, complètement en dehors de l'écran visible */
+        transform: translateY(100vh); 
+    }
+    100% {
+        /* S'arrête pile à sa position centrale d'origine */
+        transform: translateY(0); 
+    }
+}
+/* --- BOUTON MUTE EN HAUT À DROITE --- */
+.mute-btn {
+    position: fixed;
+    top: 15px;
+    right: 15px;
+    z-index: 10;
+    
+    /* Taille miniature */
+    width: 45px;
+    height: 45px;
+    font-size: 16px;
+    
+    /* On centre l'émoji */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+
+    /* Bordures et design Minecraft identiques à tes petits boutons */
+    background: #5c5c5c;
+    border: 3px solid #000;
+    border-top-color: #8b8b8b;
+    border-left-color: #8b8b8b;
+    border-right-color: #373737;
+    border-bottom-color: #373737;
+}
+
+/* Effet quand on clique dessus */
+.mute-btn:active {
+    border-top-color: #373737;
+    border-left-color: #373737;
+    border-right-color: #8b8b8b;
+    border-bottom-color: #8b8b8b;
+    padding-top: 4px; /* Simule l'enfoncement */
+}
+/* --- ÉCRAN DE LA GALERIE --- */
+.galerie-screen {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    max-width: 900px;
+    padding: 20px;
+}
+
+.galerie-screen h2 {
+    color: #fdb813;
+    font-family: 'Press Start 2P', Arial, sans-serif;
+    font-size: 22px;
+    text-shadow: 3px 3px 0px #000;
+    margin-bottom: 5px;
+}
+
+.galerie-subtitle {
+    color: #a0a0a0;
+    font-family: 'Press Start 2P', Arial, sans-serif;
+    font-size: 11px;
+    margin-bottom: 25px;
+}
+
+/* Grille de 2 colonnes / 2 lignes */
+.galerie-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+    width: 100%;
+    max-height: 50vh; /* Évite que ça dépasse sur les petits écrans */
+    overflow-y: auto; /* Permet de scroller si tu mets bcp de photos */
+    padding: 5px;
+}
+
+/* Design de chaque photo (Style Minecraft) */
+.galerie-item {
+    border: 4px solid #000;
+    background: #2c2c2c;
+    box-shadow: inset 3px 3px 0px #8a8a8a, inset -3px -3px 0px #1a1a1a;
+    padding: 5px;
+    display: flex;
+    transition: transform 0.2s ease;
+}
+
+.galerie-item img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    image-rendering: pixelated; /* Garde le look rétro si ce sont des screens MC */
+}
+
+/* Petit effet zoom quand on survole une photo */
+.galerie-item:hover {
+    transform: scale(1.03);
+    border-color: #fdb813;
+}
+/* --- EFFET ZOOM PHOTO GALERIE --- */
+
+/* On prépare l'élément pour une transition fluide */
+.galerie-item {
+    position: relative;
+    cursor: zoom-in;
+    transition: transform 0.3s ease, border-color 0.2s ease;
+    z-index: 1;
+}
+
+/* Quand l'image a la classe .zoomed */
+.galerie-item.zoomed {
+    position: fixed;
+    inset: 0;
+    margin: auto;
+    width: 80vw;       /* Prend 80% de la largeur de l'écran */
+    height: 70vh;      /* Prend 70% de la hauteur de l'écran */
+    max-width: 900px;
+    z-index: 999;      /* Passe par-dessus tout le reste */
+    cursor: zoom-out;
+    transform: scale(1) !important; /* Annule le petit survol */
+    animation: zoomInEffect 0.25s ease-out;
+}
+
+/* Optionnel : Ajoute un arrière-plan sombre derrière l'image zoomée */
+.galerie-item.zoomed::before {
+    content: '';
+    position: fixed;
+    inset: -100vh -100vw;
+    background: rgba(0, 0, 0, 0.75);
+    z-index: -1;
+    pointer-events: none;
+}
+
+.galerie-item.zoomed img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain; /* L'image garde ses proportions sans être écrasée */
+}
+
+/* Petite animation d'apparition pour le zoom */
+@keyframes zoomInEffect {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+/* --- ÉCRAN QUITTER --- */
+.quitter-screen {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.quitter-screen h2 {
+    color: #ff5555; /* Rouge Minecraft pouralerter */
+    font-family: 'Press Start 2P', Arial, sans-serif;
+    font-size: 22px;
+    text-shadow: 3px 3px 0px #000;
+    margin-bottom: 5px;
+}
+
+.quitter-subtitle {
+    color: #a0a0a0;
+    font-family: 'Press Start 2P', Arial, sans-serif;
+    font-size: 12px;
+    margin-bottom: 30px;
+}
+
+.quitter-buttons {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
